@@ -1,7 +1,97 @@
-<html>
-  <head>
-    <title>Agent Test Page - wxo </title>
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agentic WatsonX Orchestrate Chat - Temenos Transact Test Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f8f8f8;
+        }
+        .header {
+            background: #111;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .content {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .grey-box {
+            background: #ccc;
+            width: 350px;
+            height: 350px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.6em;
+            color: #444;
+            font-weight: 600;
+            box-shadow: 0 4px 16px rgba(50,50,50,0.10);
+        }
+        .instruction {
+            margin: 48px auto 24px auto;
+            max-width: 800px;
+            font-size: 1.3em;
+            color: #222;
+            text-align: center;
+        }
+        .footer-note {
+            margin: 16px auto;
+            text-align: center;
+            font-size: 1em;
+            color: #444;
+        }
+        /* Chat icon circle down right */
+        .chat-icon {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 67px;
+            height: 67px;
+            background: #222;
+            border-radius: 50%;
+            box-shadow: 0 4px 24px rgba(20,20,20,0.38);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+        }
+        .chat-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: #fff;
+        }
+        .chat-tooltip {
+            position: fixed;
+            bottom: 110px;
+            right: 32px;
+            background: #222;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 9px;
+            font-size: 1em;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 101;
+        }
+        .chat-icon:hover + .chat-tooltip {
+            opacity: 1;
+        }
+    </style>
+</head>
   <script>
   window.wxOConfiguration = {
     orchestrationID: "98ff78eb326f477f8447f94142661697_30bf5102-b755-485b-b4ec-d0a8cbeaf8e8",
@@ -23,9 +113,45 @@
     document.head.appendChild(script);
   }, 0);                     
 </script>
+<body>
 
-  <body>
-    Try the chat icon
-  </body>
+    <div class="header">
+        Temenos Transact AI Agentic Orchestrate Chat Test Page
+    </div>
+
+    <div class="instruction">
+        This page is <strong>just a test of the embedded Agentic AI Chat capability powered by IBM WatsonX Orchestrate</strong>.<br>
+        It is loaded with knowledge about <strong>Temenos Transact banking functionality</strong>.
+    </div>
+
+    <div class="content">
+        <div class="grey-box">
+            Test Box 1
+        </div>
+        <div class="grey-box">
+            Test Box 2
+        </div>
+    </div>
+
+    <div class="footer-note">
+        Click the <strong>chat icon</strong> at the bottom-right to begin your AI conversation.<br>
+        The agent can answer questions and assist with Temenos Transact-related needs.
+    </div>
+
+    <!-- Chat icon (static, no functionality unless JS/Platform loads chatbot) -->
+    <div class="chat-icon" title="Start AI Chat">
+        <!-- Simple chat bubble SVG icon -->
+        <svg viewBox="0 0 32 32">
+            <ellipse cx="16" cy="16" rx="14" ry="12"/>
+            <ellipse cx="23" cy="25" rx="7" ry="5"/>
+            <circle cx="12" cy="16" r="2"/>
+            <circle cx="18" cy="16" r="2"/>
+            <circle cx="24" cy="16" r="2"/>
+        </svg>
+    </div>
+    <div class="chat-tooltip">
+        Start Agentic AI Chat
+    </div>
+
+</body>
 </html>
-
