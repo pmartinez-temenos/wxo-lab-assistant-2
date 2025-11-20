@@ -92,30 +92,19 @@
         }
         
   /* Contenedor donde se monta el chat */
-  #root {
-    width: 80vw !important;
-    height: 90vh !important;
-    margin: auto;
-  }
+.wxo-float-container {
+  width: 80vw !important;
+  height: 90vh !important;
+  max-width: 80vw !important;
+  max-height: 90vh !important;
+  left: 10vw !important;
+  top: 5vh !important;
+  right: auto !important;
+  bottom: auto !important;
+  position: fixed !important; /* Si lo quieres flotante */
+  z-index: 99999 !important;
+}
 
-  /* Contenedor principal del chat */
-  .WxOChatContainer.WxOChatReset.WxOChatStyles .wxo-float-container {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-  }
-
-  /* Zona de mensajes (lo que en tu captura es .message-content-wrapper) */
-  .WxOChatContainer.WxOChatReset.WxOChatStyles .wxo-float-container .message-content-wrapper,
-  .WxOChatContainer.WxOChatReset.WxOChatStyles .wxo-float-container .messageContent,
-  .WxOChatContainer.WxOChatReset.WxOChatStyles .wxo-float-container .wxoChat-content,
-  .WxOChatContainer.WxOChatReset.WxOChatStyles .wxo-float-container .wxoChat-scrollbar {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-  }
 </style>
            
 <script>
