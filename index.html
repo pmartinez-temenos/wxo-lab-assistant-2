@@ -90,16 +90,31 @@
         .chat-icon:hover + .chat-tooltip {
             opacity: 1;
         }
-
+        
+  /* Contenedor donde se monta el chat */
   #root {
     width: 80vw !important;
     height: 90vh !important;
-    max-width: 80vw;
-    max-height: 90vh;
-    min-width: 80vw;
-    min-height: 90vh;
     margin: auto;
-    display: block;
+  }
+
+  /* Contenedor principal del chat */
+  .wxoChatContainer {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  /* Zona de mensajes (lo que en tu captura es .message-content-wrapper) */
+  .wxoChatContainer .message-content-wrapper,
+  .wxoChatContainer .messageContent,
+  .wxoChatContainer .wxoChat-content,
+  .wxoChatContainer .wxoChat-scrollbar {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
   }
 </style>
            
