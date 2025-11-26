@@ -73,6 +73,8 @@ const mostrarUsuario = async () => {
   document.getElementById("btn-logout").disabled = !isAuthenticated;
   document.getElementById("btn-login").disabled = isAuthenticated;
   document.getElementById("btn-settings").disabled = !isAuthenticated;
+  document.getElementById("bchatButton").disabled = !isAuthenticated;
+  document.getElementById("wxo-chat").disabled = !isAuthenticated;
   const usuario = document.getElementById("user-area");
   if (isAuthenticated) {
     const info = await authgearClient.fetchUserInfo();
