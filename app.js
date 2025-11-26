@@ -6,15 +6,18 @@ const REDIRECT_URI = "https://pmartinez-temenos.github.io/wxo-lab-assistant-2/";
 
 // Inicializa Authgear en la web
 const configureClient = async () => {
+  if (!window.authgear || !window.authgear.default) {
+    console.error("El SDK de Authgear no está disponible. Verifica la carga del script.");
+    return;
+  }
+  authgearClient = window.authgear.default;
   try {
-    authgearClient = window.authgear.default;
     await authgearClient.configure({
       endpoint: ENDPOINT,
       clientID: CLIENT_ID,
       sessionType: "refresh_token"
     });
     console.log("Authgear configurado.");
-    // Activa los botones
     document.getElementById("btn-login").disabled = false;
     document.getElementById("btn-logout").disabled = false;
   } catch (err) {
@@ -58,6 +61,14 @@ const openUserSettings = () => {
 };
 
 const mostrarUsuario = async () => {
+  if (!authgearClient) {
+    console.error("authgearClient no está inicializado.");
+    return;
+  }
+  if (!authgearClient.sessionState) {
+    console.error("sessionState no está disponible.");
+    return;
+  }  
   const isAuthenticated = authgearClient.sessionState === "AUTHENTICATED";
   document.getElementById("btn-logout").disabled = !isAuthenticated;
   document.getElementById("btn-login").disabled = isAuthenticated;
