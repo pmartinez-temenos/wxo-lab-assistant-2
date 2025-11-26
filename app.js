@@ -60,6 +60,42 @@ const openUserSettings = () => {
   authgearClient.open("/settings");
 };
 
+
+function ocultarChatButton() {
+  // Selecciona todos los elementos con la clase del botón de chat
+  const btns = document.getElementsByClassName('chatButton');
+  for (let i = 0; i < btns.length; i++) {
+    // Coloca el botón fuera de la vista (alternativamente puedes usar display: none)
+    btns[i].style.position = "fixed";
+    btns[i].style.display = "none";
+    btns[i].style.left = "-9999px"; // Lo mueve fuera de la pantalla
+  }
+}
+
+function cargarChatSiAutorizado() {
+  // Solo carga el script si no está ya presente
+  if (!document.getElementById("wxochat-script")) {
+    window.wxOConfiguration = {
+      orchestrationID: "4293d2231821498eae786b8655444d73_784c9f72-6d76-4c4a-a76a-079520e08474",
+      hostURL: "https://au-syd.watson-orchestrate.cloud.ibm.com",
+      rootElementID: "root",
+      deploymentPlatform: "ibmcloud",
+      crn: "crn:v1:bluemix:public:watsonx-orchestrate:au-syd:a/4293d2231821498eae786b8655444d73:784c9f72-6d76-4c4a-a76a-079520e08474::",
+      chatOptions: {
+        agentId: "12766403-d467-4e68-8f8b-f45708c04b0f", 
+        agentEnvironmentId: "ae07cbd4-9729-4a5b-b466-b97eb2f0237a",
+      }
+    };
+    const script = document.createElement('script');
+    script.src = `${window.wxOConfiguration.hostURL}/wxochat/wxoLoader.js?embed=true`;
+    script.id = "wxochat-script"; // Identificador para evitar duplicados
+    script.addEventListener('load', function () {
+      if (window.wxoLoader) wxoLoader.init();
+    });
+    document.head.appendChild(script);
+  }
+}
+
 const mostrarUsuario = async () => {
   if (!authgearClient) {
     console.error("authgearClient no está inicializado.");
@@ -77,9 +113,12 @@ const mostrarUsuario = async () => {
   document.getElementById("chat-icon").disabled = !isAuthenticated;
   document.getElementById("wxo-chat").disabled = !isAuthenticated;
   if (isAuthenticated) {
+    cargarChatSiAutorizado();
     mostrarChatButton();
   } else {
     ocultarChatButton();
+    const s = document.getElementById("wxochat-script");
+    if (s) s.remove();
   }
   const usuario = document.getElementById("user-area");
   if (isAuthenticated) {
@@ -89,17 +128,6 @@ const mostrarUsuario = async () => {
     usuario.innerHTML = `<em>No session started yet.</em>`;
   }
 };
-
-function ocultarChatButton() {
-  // Selecciona todos los elementos con la clase del botón de chat
-  const btns = document.getElementsByClassName('chatButton');
-  for (let i = 0; i < btns.length; i++) {
-    // Coloca el botón fuera de la vista (alternativamente puedes usar display: none)
-    btns[i].style.position = "fixed";
-    btns[i].style.display = "none";
-    btns[i].style.left = "-9999px"; // Lo mueve fuera de la pantalla
-  }
-}
 
 function mostrarChatButton() {
   const btns = document.getElementsByClassName('chatButton');
