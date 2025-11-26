@@ -109,9 +109,9 @@ const mostrarUsuario = async () => {
   document.getElementById("btn-logout").disabled = !isAuthenticated;
   document.getElementById("btn-login").disabled = isAuthenticated;
   document.getElementById("btn-settings").disabled = !isAuthenticated;
-  document.getElementById("chatButton").disabled = !isAuthenticated;
-  document.getElementById("chat-icon").disabled = !isAuthenticated;
-  document.getElementById("wxo-chat").disabled = !isAuthenticated;
+  //document.getElementById("chatButton").disabled = !isAuthenticated;
+  //document.getElementById("chat-icon").disabled = !isAuthenticated;
+  //document.getElementById("wxo-chat").disabled = !isAuthenticated;
   if (isAuthenticated) {
     cargarChatSiAutorizado();
     mostrarChatButton();
