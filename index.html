@@ -13,12 +13,52 @@
         .header {
             background: #111;
             color: #fff;
-            padding: 30px;
-            text-align: center;
-            font-size: 2em;
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-title {
+            flex: 1;
+            font-size: 2.2em;
             font-weight: bold;
+            text-align: center;
             letter-spacing: 1px;
         }
+        .header-userarea {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        #user-info {
+            color: #fff;
+            font-weight: 400;
+            background: rgba(255,255,255,0.15);
+            padding: 6px 18px;
+            border-radius: 20px;
+            min-width: 120px;
+            text-align: right;
+        }
+        .btn {
+            background: linear-gradient(90deg,#0176d3,#0151a5);
+            color: #fff;
+            border: none;
+            border-radius: 18px;
+            padding: 8px 20px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background .2s;
+            margin-left: 6px;
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .btn:not(:disabled):hover {
+            background: #0151a5;
+        }
+        
         .content {
             display: flex;
             flex-direction: row;
@@ -115,15 +155,18 @@
 </head>
     
 <body>
-    <div class="header">
-        Temenos Transact Consultant AI Agentic Orchestrate Chat Page
-        <button id="btn-login" onclick="login()">login</button>
-        <button id="btn-logout" onclick="logout()" disabled>logout</button>
-        <button id="btn-settings" onclick="openUserSettings()" disabled>settings</button>
+  <div class="header">
+    <div class="header-title">
+      Temenos Transact Consultant AI Agentic Orchestrate Chat Page
     </div>
+    <div class="header-userarea">
+      <span id="user-info"></span>
+      <button class="btn" id="btn-login" onclick="login()">Login</button>
+      <button class="btn" id="btn-logout" onclick="logout()" disabled>Logout</button>
+      <button class="btn" id="btn-settings" onclick="openUserSettings()" disabled>Settings</button>
+    </div>
+  </div>    
 
-    <div id="user-area"></div>    
- 
     <div class="instruction">
         Check that you have authorization to use this page <strong>this uses the embedded Agentic AI Chat capability powered by IBM WatsonX Orchestrate</strong>.<br>
         It has access to knowledge about <strong>Temenos Transact banking functionality</strong>. Only authorized users can register.
