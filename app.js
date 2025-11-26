@@ -100,6 +100,7 @@ function cargarChatSiAutorizado() {
       }
     });
     document.head.appendChild(script);
+    aplicarEstilosWXO_JS();
   }
 }
 
