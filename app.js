@@ -76,6 +76,11 @@ const mostrarUsuario = async () => {
   document.getElementById("chatButton").disabled = !isAuthenticated;
   document.getElementById("chat-icon").disabled = !isAuthenticated;
   document.getElementById("wxo-chat").disabled = !isAuthenticated;
+  if (isAuthenticated) {
+    mostrarChatButton();
+  } else {
+    ocultarChatButton();
+  }
   const usuario = document.getElementById("user-area");
   if (isAuthenticated) {
     const info = await authgearClient.fetchUserInfo();
@@ -84,6 +89,27 @@ const mostrarUsuario = async () => {
     usuario.innerHTML = `<em>No session started yet.</em>`;
   }
 };
+
+function ocultarChatButton() {
+  // Selecciona todos los elementos con la clase del botón de chat
+  const btns = document.getElementsByClassName('chatButton');
+  for (let i = 0; i < btns.length; i++) {
+    // Coloca el botón fuera de la vista (alternativamente puedes usar display: none)
+    btns[i].style.position = "fixed";
+    btns[i].style.display = "none";
+    btns[i].style.left = "-9999px"; // Lo mueve fuera de la pantalla
+  }
+}
+
+function mostrarChatButton() {
+  const btns = document.getElementsByClassName('chatButton');
+  for (let i = 0; i < btns.length; i++) {
+    // Devuelve el botón a su posición original (ajusta según necesidades)
+    btns[i].style.position = "";
+    btns[i].style.display = "";
+    btns[i].style.left = "";
+  }
+}
 
 // Maneja flujo de autenticación y la redirección
 window.onload = async () => {
@@ -94,4 +120,6 @@ window.onload = async () => {
     window.history.replaceState({}, document.title, REDIRECT_URI); // limpieza de URL
   }
   mostrarUsuario();
+  // Lanza una llamada adicional unos segundos después para scripts externos
+  setTimeout(() => { mostrarUsuario(); }, 3000);
 };
