@@ -6,30 +6,50 @@ const REDIRECT_URI = "https://pmartinez-temenos.github.io/wxo-lab-assistant-2/";
 
 // Inicializa Authgear en la web
 const configureClient = async () => {
-  authgearClient = window.authgear.default;
-  await authgearClient.configure({
-    endpoint: ENDPOINT,
-    clientID: CLIENT_ID,
-    sessionType: "refresh_token",
-  }).then(
-    () => console.log("Authgear configurado."),
-    (err) => console.log("Error configurando Authgear:", err)
-  );
+  try {
+    authgearClient = window.authgear.default;
+    await authgearClient.configure({
+      endpoint: ENDPOINT,
+      clientID: CLIENT_ID,
+      sessionType: "refresh_token"
+    });
+    console.log("Authgear configurado.");
+    // Activa los botones
+    document.getElementById("btn-login").disabled = false;
+    document.getElementById("btn-logout").disabled = false;
+  } catch (err) {
+    console.error("Error configurando Authgear:", err);
+  }
 };
 
-// Iniciar login con redirección
 const login = async () => {
-  await authgearClient.startAuthentication({
-    redirectURI: REDIRECT_URI, // GitHub Pages URI pública (ajústala)
-    prompt: "login",
-  }).catch(err => console.log("Login error:", err));
+  if (!authgearClient) {
+    console.error("Error: Authgear aún no está inicializado.");
+    return;
+  }
+  try {
+    await authgearClient.startAuthentication({
+      redirectURI: REDIRECT_URI,
+      prompt: "login",
+    });
+  } catch (err) {
+    console.error("Login error:", err);
+  }
 };
 
 // Logout de sesión
 const logout = async () => {
-  await authgearClient.logout({
-    redirectURI: REDIRECT_URI, // Idealmente tu página principal
-  }).catch(err => console.log("Logout error:", err));
+  if (!authgearClient) {
+    console.error("Error: Authgear aún no está inicializado.");
+    return;
+  }
+  try {
+    await authgearClient.logout({
+      redirectURI: REDIRECT_URI,
+    });
+  } catch (err) {
+    console.error("Logout error:", err);
+  }
 };
 
 // Abrir ventana de configuración de usuario (preconstruida Authgear)
