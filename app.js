@@ -60,29 +60,6 @@ const openUserSettings = () => {
   authgearClient.open("/settings");
 };
 
-function aplicarEstilosCSS_WXO() {
-  if (!document.getElementById('wxo-custom-style')) {
-    const style = document.createElement('style');
-    style.id = 'wxo-custom-style';
-    style.textContent = `
-      .wxo-float-container,
-      .wxo-float {
-        width: 80vw !important;
-        height: 85vh !important;
-        max-width: 80vw !important;
-        max-height: 85vh !important;
-        left: 10vw !important;
-        top: 12vh !important;
-        right: auto !important;
-        bottom: auto !important;
-        position: fixed !important;
-        z-index: 99999 !important;
-      }
-    `;
-    document.head.appendChild(style);
-  }
-}
-
 function aplicarEstilosWXO_JS() {
   const elems = document.querySelectorAll('.wxo-float-container, .wxo-float');
   elems.forEach(elem => {
