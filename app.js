@@ -121,5 +121,5 @@ window.onload = async () => {
   }
   mostrarUsuario();
   // Lanza una llamada adicional unos segundos después para scripts externos
-  setTimeout(() => { mostrarUsuario(); }, 3000);
+  setTimeout(() => { mostrarUsuario(); }, 5000);
 };
