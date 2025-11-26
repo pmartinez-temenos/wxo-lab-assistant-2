@@ -60,16 +60,20 @@ const openUserSettings = () => {
   authgearClient.open("/settings");
 };
 
-
-function ocultarChatButton() {
-  // Selecciona todos los elementos con la clase del botón de chat
-  const btns = document.getElementsByClassName('chatButton');
-  for (let i = 0; i < btns.length; i++) {
-    // Coloca el botón fuera de la vista (alternativamente puedes usar display: none)
-    btns[i].style.position = "fixed";
-    btns[i].style.display = "none";
-    btns[i].style.left = "-9999px"; // Lo mueve fuera de la pantalla
-  }
+function aplicarEstilosWXO_JS() {
+  const elems = document.querySelectorAll('.wxo-float-container, .wxo-float');
+  elems.forEach(elem => {
+    elem.style.width = "80vw";
+    elem.style.height = "85vh";
+    elem.style.maxWidth = "80vw";
+    elem.style.maxHeight = "85vh";
+    elem.style.left = "10vw";
+    elem.style.top = "12vh";
+    elem.style.right = "auto";
+    elem.style.bottom = "auto";
+    elem.style.position = "fixed";
+    elem.style.zIndex = "99999";
+  });
 }
 
 function cargarChatSiAutorizado() {
@@ -90,7 +94,10 @@ function cargarChatSiAutorizado() {
     script.src = `${window.wxOConfiguration.hostURL}/wxochat/wxoLoader.js?embed=true`;
     script.id = "wxochat-script"; // Identificador para evitar duplicados
     script.addEventListener('load', function () {
-      if (window.wxoLoader) wxoLoader.init();
+      if (window.wxoLoader) {
+        wxoLoader.init();
+        aplicarEstilosWXO_JS();
+      }
     });
     document.head.appendChild(script);
   }
@@ -109,14 +116,9 @@ const mostrarUsuario = async () => {
   document.getElementById("btn-logout").disabled = !isAuthenticated;
   document.getElementById("btn-login").disabled = isAuthenticated;
   document.getElementById("btn-settings").disabled = !isAuthenticated;
-  //document.getElementById("chatButton").disabled = !isAuthenticated;
-  //document.getElementById("chat-icon").disabled = !isAuthenticated;
-  //document.getElementById("wxo-chat").disabled = !isAuthenticated;
   if (isAuthenticated) {
     cargarChatSiAutorizado();
-    mostrarChatButton();
   } else {
-    ocultarChatButton();
     const s = document.getElementById("wxochat-script");
     if (s) s.remove();
   }
@@ -128,16 +130,6 @@ const mostrarUsuario = async () => {
     usuario.innerHTML = `<em>No session started yet.</em>`;
   }
 };
-
-function mostrarChatButton() {
-  const btns = document.getElementsByClassName('chatButton');
-  for (let i = 0; i < btns.length; i++) {
-    // Devuelve el botón a su posición original (ajusta según necesidades)
-    btns[i].style.position = "";
-    btns[i].style.display = "";
-    btns[i].style.left = "";
-  }
-}
 
 // Maneja flujo de autenticación y la redirección
 window.onload = async () => {
