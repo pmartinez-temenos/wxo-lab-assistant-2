@@ -60,21 +60,45 @@ const openUserSettings = () => {
   authgearClient.open("/settings");
 };
 
+function aplicarEstilosCSS_WXO() {
+  if (!document.getElementById('wxo-custom-style')) {
+    const style = document.createElement('style');
+    style.id = 'wxo-custom-style';
+    style.textContent = `
+      .wxo-float-container,
+      .wxo-float {
+        width: 80vw !important;
+        height: 85vh !important;
+        max-width: 80vw !important;
+        max-height: 85vh !important;
+        left: 10vw !important;
+        top: 12vh !important;
+        right: auto !important;
+        bottom: auto !important;
+        position: fixed !important;
+        z-index: 99999 !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+}
+
 function aplicarEstilosWXO_JS() {
   const elems = document.querySelectorAll('.wxo-float-container, .wxo-float');
   elems.forEach(elem => {
-    elem.style.width = "80vw";
-    elem.style.height = "85vh";
-    elem.style.maxWidth = "80vw";
-    elem.style.maxHeight = "85vh";
-    elem.style.left = "10vw";
-    elem.style.top = "12vh";
-    elem.style.right = "auto";
-    elem.style.bottom = "auto";
-    elem.style.position = "fixed";
-    elem.style.zIndex = "99999";
+    elem.style.setProperty("width", "80vw", "important");
+    elem.style.setProperty("height", "85vh", "important");
+    elem.style.setProperty("max-width", "80vw", "important");
+    elem.style.setProperty("max-height", "85vh", "important");
+    elem.style.setProperty("left", "10vw", "important");
+    elem.style.setProperty("top", "12vh", "important");
+    elem.style.setProperty("right", "auto", "important");
+    elem.style.setProperty("bottom", "auto", "important");
+    elem.style.setProperty("position", "fixed", "important");
+    elem.style.setProperty("z-index", "99999", "important");
   });
 }
+
 
 function cargarChatSiAutorizado() {
   // Solo carga el script si no está ya presente
