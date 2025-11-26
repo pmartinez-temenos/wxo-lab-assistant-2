@@ -119,6 +119,16 @@ const mostrarUsuario = async () => {
   document.getElementById("btn-settings").disabled = !isAuthenticated;
   if (isAuthenticated) {
     cargarChatSiAutorizado();
+
+    let intentos = 0;
+    const intervalo = setInterval(() => {
+      aplicarEstilosWXO_JS();
+      intentos++;
+      if (intentos >= 5) { // Aplica 5 veces cada segundo (ajusta según necesidad)
+        clearInterval(intervalo);
+      }
+    }, 5000);
+    
   } else {
     const s = document.getElementById("wxochat-script");
     if (s) s.remove();
