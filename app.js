@@ -1,8 +1,8 @@
-let authgearClient = null;
+.htmllet authgearClient = null;
 // Configura tus datos reales aquí:
 const ENDPOINT = "https://mysec-labtory.authgear.cloud"; 
 const CLIENT_ID = "c88b3a0b477c9f17";                     
-const REDIRECT_URI = "https://pmartinez-temenos.github.io/wxo-lab-assistant-2/"; 
+const REDIRECT_URI = "https://pmartinez-temenos.github.io/wxo-lab-assistant-2/index.html"; 
 
 // Inicializa Authgear en la web
 const configureClient = async () => {
