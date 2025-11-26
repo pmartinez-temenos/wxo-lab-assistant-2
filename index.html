@@ -136,8 +136,13 @@
 <body>
     <div class="header">
         Temenos Transact AI Agentic Orchestrate Chat Test Page
+        <button id="btn-login" onclick="login()">login</button>
+        <button id="btn-logout" onclick="logout()" disabled>logout</button>
+        <button id="btn-settings" onclick="openUserSettings()" disabled>settings</button>
     </div>
-
+    <script src="app.js"></script>
+    <script src="https://unpkg.com/@authgear/[email protected]/dist/authgear-web.iife.js"></script>
+ 
     <div class="instruction">
         This page is <strong>just a test of the embedded Agentic AI Chat capability powered by IBM WatsonX Orchestrate</strong>.<br>
         It is loaded with knowledge about <strong>Temenos Transact banking functionality</strong>.
