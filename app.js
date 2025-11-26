@@ -123,12 +123,14 @@ const mostrarUsuario = async () => {
     const s = document.getElementById("wxochat-script");
     if (s) s.remove();
   }
-  const usuario = document.getElementById("user-area");
+  const userInfoEl = document.getElementById("user-info");
   if (isAuthenticated) {
     const info = await authgearClient.fetchUserInfo();
-    usuario.innerHTML = `<strong>Email:</strong> ${info.email} <br/><strong>Verified:</strong> ${info.email_verified}`;
+    //userInfoEl.innerHTML = `<strong>Email:</strong> ${info.email} <br/><strong>Verified:</strong> ${info.email_verified}`;
+    userInfoEl.textContent = info.email || " Connected";
   } else {
-    usuario.innerHTML = `<em>No session started yet.</em>`;
+    //userInfoEl.innerHTML = `<em>No session started yet.</em>`;
+    userInfoEl.textContent = "Disconnected";
   }
 };
 
